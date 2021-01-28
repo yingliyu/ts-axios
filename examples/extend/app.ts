@@ -1,4 +1,20 @@
 import axios from '../../src/index'
+import qs from 'qs'
+
+axios.defaults.headers.common['test2'] = 123
+
+axios({
+  method: 'post',
+  url: '/extend/post',
+  data: qs.stringify({
+    a: 1
+  }),
+  headers: {
+    test: '123456'
+  }
+}).then(res => {
+  console.log(res.data)
+})
 
 // axios({
 //   url: '/extend/post',
@@ -7,7 +23,7 @@ import axios from '../../src/index'
 //     msg: 'hi'
 //   }
 // })
-//
+
 // axios.request({
 //   url: '/extend/post',
 //   method: 'post',
@@ -15,19 +31,19 @@ import axios from '../../src/index'
 //     msg: 'hello'
 //   }
 // })
-//
+
 // axios.get('/extend/get')
-//
+
 // axios.options('/extend/options')
-//
+
 // axios.delete('/extend/delete')
-//
+
 // axios.head('/extend/head')
-//
+
 // axios.post('/extend/post', { msg: 'post' })
-//
+
 // axios.put('/extend/put', { msg: 'put' })
-//
+
 // axios.patch('/extend/patch', { msg: 'patch' })
 
 // axios({
@@ -37,7 +53,7 @@ import axios from '../../src/index'
 //     msg: 'hi'
 //   }
 // })
-//
+
 // axios('/extend/post', {
 //   method: 'post',
 //   data: {
@@ -62,7 +78,6 @@ function getUser<T>() {
     .catch(err => console.error(err))
 }
 
-
 async function test() {
   const user = await getUser<User>()
   if (user) {
@@ -70,4 +85,4 @@ async function test() {
   }
 }
 
-test()
+// test()

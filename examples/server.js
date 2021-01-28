@@ -30,6 +30,8 @@ const router = express.Router()
 
 registerSimpleRouter()
 
+registerConfigRouter()
+
 registerBaseRouter()
 
 registerErrorRouter()
@@ -40,7 +42,7 @@ registerInterceptorRouter()
 
 app.use(router)
 
-const port = process.env.PORT || 8080
+const port = process.env.PORT || 8088
 module.exports = app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}, Ctrl+C to stop`)
 })
@@ -50,6 +52,12 @@ function registerSimpleRouter() {
     res.json({
       msg: `hello world`
     })
+  })
+}
+
+function registerConfigRouter() {
+  router.post('/config/post', function(req, res) {
+    res.json(req.body)
   })
 }
 
